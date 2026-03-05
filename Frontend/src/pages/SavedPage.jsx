@@ -18,17 +18,6 @@ function SavedPage() {
     getUserSavedReels()
   }, [])
 
-  if (userSavedReels.length === 0) {
-    return (
-      <div className='min-h-screen w-full max-w-md mx-auto bg-black/90 flex justify-center items-center'>
-        <button onClick={() => navigate(-1)} className='dark:text-white'>
-          <IoIosArrowRoundBack size={25} />
-        </button>
-        <p className='text-white'>No Saved Reels</p>
-      </div>
-    )
-  }
-
   return (
     <div className='min-h-screen w-full max-w-md mx-auto bg-black/90 relative'>
       <div className='p-4'>
@@ -39,6 +28,8 @@ function SavedPage() {
         <div className='h-px bg-gray-200 dark:bg-neutral-800 my-2' />
         <div className='grid grid-cols-3 gap-3'>
           {
+            !userSavedReels.length ?
+            <p className='text-white'>No Saved Reels</p> :
             userSavedReels.map(reel => (
               <Reel key={reel._id} reel={reel.savedReel} location={location} />
             ))
