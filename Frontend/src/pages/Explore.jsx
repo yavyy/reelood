@@ -77,7 +77,7 @@ export default function Explore() {
   // }
 
   return (
-    <div className="relative h-screen w-full md:w-1/2 xl:w-1/3 overflow-y-scroll snap-y snap-mandatory bg-black no-scrollbar">
+    <div className="relative h-screen w-full max-w-md overflow-y-scroll snap-y snap-mandatory bg-black no-scrollbar">
       {/* Back Button */}
       <div className="px-3 w-full py-1 z-50 sticky top-0 flex justify-between items-center">
         <button
@@ -108,7 +108,7 @@ export default function Explore() {
               <video
                 ref={(el) => (videoRefs.current[index] = el)}
                 src={video.video}
-                className="h-screen w-full object-cover"
+                className="w-full object-cover"
                 loop
                 muted={mute}
                 onClick={() => setMute(!mute)}
@@ -151,7 +151,7 @@ export default function Explore() {
 
           })
       }
-      <div div className="sticky bottom-0 right-0 w-full z-50 px-4 py-2 flex justify-between items-center bg-transparent backdrop-blur-xs">
+      <div div className="fixed bottom-0 right-1/2 translate-x-1/2 w-full max-w-md z-50 px-4 py-2 flex justify-between items-center bg-transparent backdrop-blur-xs">
         <button onClick={() => navigate('/')} className="text-white">
           <GoHome size={24} />
         </button>
