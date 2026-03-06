@@ -117,7 +117,7 @@ export default function Explore() {
 
               {/* Overlay */}
               <div className="">
-                <div className="text-white px-2 py-4 absolute bottom-8 left-0 right-0">
+                <div className="text-white px-2 py-4 absolute bottom-15 left-0 right-0">
                   <Link to={`/creator/${video.uploadedBy?._id}`}>
                     <h2 className="text-sm sm:text-base font-semibold text-wrap">
                       @creator_{video.uploadedBy?.fullName}
@@ -126,7 +126,7 @@ export default function Explore() {
                     {video.caption ? video.caption : ""}
                   </p>
                 </div>
-                <div className="fixed bottom-0 right-0 w-full z-50 md:w-1/2 xl:w-1/3 md:right-1/2 md:translate-x-1/2 px-4 py-2 flex justify-between items-center bg-transparent backdrop-blur-xs">
+                <div className="absolute bottom-0 right-0 w-full z-50 md:w-1/2 xl:w-1/3 md:right-1/2 md:translate-x-1/2 px-4 py-2 flex justify-between items-center bg-transparent backdrop-blur-xs">
                   <button onClick={() => navigate('/')} className="text-white">
                     <GoHome size={24} />
                   </button>
@@ -137,7 +137,7 @@ export default function Explore() {
               </div>
 
               {/* Right Actions */}
-              <div className="absolute right-3 bottom-27 flex flex-col items-center gap-2 text-white">
+              <div className="absolute right-3 bottom-30 flex flex-col items-center gap-2 text-white">
                 <button onClick={() => handleReelLike(video)} className="flex flex-col items-center gap-1 text-xs">
                   <span className="border border-gray-100/10 text-center p-1.5 bg-transparent backdrop-blur-sm shadow rounded-full">
                     {!video.isLiked ? <GoHeart size={16} /> : <GoHeartFill size={16} color="red" />}
