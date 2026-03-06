@@ -116,8 +116,8 @@ export default function Explore() {
               />
 
               {/* Overlay */}
-              <div className="">
-                <div className="text-white px-2 py-4 absolute bottom-15 left-0 right-0">
+              <div className="absolute bottom-10 left-0 right-0 p-4 ">
+                <div className="text-white">
                   <Link to={`/creator/${video.uploadedBy?._id}`}>
                     <h2 className="text-sm sm:text-base font-semibold text-wrap">
                       @creator_{video.uploadedBy?.fullName}
@@ -126,14 +126,14 @@ export default function Explore() {
                     {video.caption ? video.caption : ""}
                   </p>
                 </div>
-                <div className="absolute bottom-0 right-0 w-full z-50 md:w-1/2 xl:w-1/3 md:right-1/2 md:translate-x-1/2 px-4 py-2 flex justify-between items-center bg-transparent backdrop-blur-xs">
-                  <button onClick={() => navigate('/')} className="text-white">
-                    <GoHome size={24} />
-                  </button>
-                  <button onClick={() => navigate('/saved')} className="text-white">
-                    <IoBookmarkOutline size={24} />
-                  </button>
-                </div>
+              </div>
+              <div className="fixed bottom-0 right-0 w-full z-50 md:right-1/2 md:translate-x-1/2 px-4 py-2 flex justify-between items-center bg-transparent backdrop-blur-xs">
+                <button onClick={() => navigate('/')} className="text-white">
+                  <GoHome size={24} />
+                </button>
+                <button onClick={() => navigate('/saved')} className="text-white">
+                  <IoBookmarkOutline size={24} />
+                </button>
               </div>
 
               {/* Right Actions */}
