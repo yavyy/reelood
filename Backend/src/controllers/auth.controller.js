@@ -49,6 +49,11 @@ async function registerUser(req, res) {
 async function loginUser(req, res) {
   try {
     const { email, password } = req.body
+    console.log(email, password)
+
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "All fields are required" })
+    }
 
     const user = await User.findOne({ email })
 
@@ -97,7 +102,7 @@ async function logoutUser(_, res) {
     res.clearCookie("token", options)
     res.status(200).json({ success: true, message: "User logged out successfully" })
   } catch (error) {
-    res.status(500).json({success: false, message: "Failed to logout", error: error.message})
+    res.status(500).json({ success: false, message: "Failed to logout", error: error.message })
   }
 }
 

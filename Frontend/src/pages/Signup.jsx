@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { FiLoader } from "react-icons/fi";
 
 export default function Signup() {
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const { signup } = useAuth()
 
@@ -15,6 +17,7 @@ export default function Signup() {
     e.preventDefault()
     const formData = new FormData(e.target)
     const data = Object.fromEntries(formData.entries())
+    setLoading(true)
     const userData = {
       fullName: data.firstName + " " + data.lastName,
       email: data.email,
@@ -23,9 +26,12 @@ export default function Signup() {
     }
 
     const result = await signup(userData)
+
     if (result.success) {
+      setLoading(false)
       navigate('/explore')
     } else {
+      setLoading(false)
       setError(result.message)
     }
   }
@@ -150,9 +156,10 @@ export default function Signup() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full mt-2 rounded-xl bg-black dark:bg-white text-white dark:text-black py-2.5 text-sm font-medium hover:opacity-90 transition"
+              className="w-full mt-2 rounded-xl bg-black dark:bg-white text-white dark:text-black py-2.5 text-sm font-medium hover:opacity-90 transition cursor-pointer active:scale-95"
+              disabled={loading}
             >
-              Sign Up
+              {loading ? <FiLoader className="animate-spin text-lg mx-auto" /> : "Sign Up"}
             </button>
           </form>
         </div>

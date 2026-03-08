@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { FiLoader } from "react-icons/fi";
 
 export default function Login() {
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
 
@@ -15,13 +17,14 @@ export default function Login() {
 
     const formData = new FormData(e.target)
     const data = Object.fromEntries(formData.entries())
-
+    setLoading(true)
     const result = await login(data)
 
     if (result.success) {
-      // navigate('/explore')
+      setLoading(false)
     } else {
       setError(result.message)
+      setLoading(false)
     }
   }
 
@@ -92,9 +95,10 @@ export default function Login() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full mt-2 rounded-xl bg-black dark:bg-white text-white dark:text-black py-2.5 text-sm font-medium hover:opacity-90 transition"
+              className="w-full mt-2 rounded-xl bg-black dark:bg-white text-white dark:text-black py-2.5 text-sm font-medium hover:opacity-90 transition cursor-pointer active:scale-95"
+              disabled={loading}
             >
-              Login
+              {loading ? <FiLoader className="animate-spin text-lg mx-auto" /> : "Login"}
             </button>
           </form>
         </div>
